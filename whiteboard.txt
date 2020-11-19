@@ -1,0 +1,53 @@
+Prompt: 
+
+Martian News Service
+The Nasa APIs page has many different APIs, each with interesting data points. You could build an application around anything from the astronomy picture of the day to the Exoplanet Archive to the weather on Mars or even photos from the Mars Rover.
+
+Here's one idea: build an application for Martians which includes Martian weather, the astronomy picture of the day, and views from the Mars Rover.
+
+To find out more information about each endpoint on the Nasa API, click Browse APIs and then click the + sign by the API you're interested in checking out.
+
+Goal: Practice using all of the build tools that we have learned so far to create an app centered around your choice of public JSON APIs which support CORS. As always, make sure you test API calls with Postman first.
+
+This is a multi-day project, so you'll have time to do the following:
+
+Experiment with different tools for working with asynchrony, including callbacks, promises, the Fetch API, and async functions
+Make multiple API calls in the application
+Separate out logic clearly, including keeping business logic separate from service and UI logic if necessary
+Write a great README with thorough setup instructions
+Experiment with chaining promises
+
+
+Whiteboard: 
+
+It will pull API data from Nasa API site for picture of the day. 
+ - Title
+ - Date
+ - Explanation
+
+Business Logic:
+fetch() request
+.then(response => response.json());
+.then(data => data.url)
+.then(data => data.title);
+.then(data => data.date);
+.then(data => data.explanation);
+throw Error(response.statusText);
+
+UI:
+$('#page-display').show(data.title);
+$('#page-display').show(data.date);
+$('#page-display').show(data.explanation);
+
+It will pull API data from Nasa API for Mars Weather Service.
+
+Stretch: It will pull API 3ata from Nasa API for Mars Rover Photos.
+
+
+
+<h1>Martian Daily News Blast</h1>
+
+Today on Mars
+ - daily weather on Mars
+ - space photo of the day
+ - most recent mars photo (maybe?)
