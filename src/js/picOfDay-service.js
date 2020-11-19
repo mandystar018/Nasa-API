@@ -1,37 +1,32 @@
-class PicOfDay {
-  static getPic() {
-    const newPic = fetch(`https://jsonplaceholder.typicode.com/users/1`)
-    .then(function(response) {
-      if(!response.ok) {
-        throw Error(response.statusText);
-      }
-      console.log(response.json());
-      return response.json();
-    })
-    .catch(function(error) {
-      return error;
-    })
-    const afterWait = () => {
-      newPic.then((abc) => {
-        console.log(abc);
-      });
-    }
-    console.log(afterWait);
+let request = new XMLHttpRequest();
+const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`;
+
+request.onreadystatechange = function() {
+  if (this.readyState === 4 && this.status === 200) {
+    const response = JSON.parse(this.responseText);
+    getElements(response);
   }
 }
 
-// let request = new XMLHttpRequest();
-// const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=[YOUR-API-KEY-HERE]`;
+request.open("GET", url, true);
+request.send();
 
-// request.onreadystatechange = function() {
-//   if (this.readyState === 4 && this.status === 200) {
-//     const response = JSON.parse(this.responseText);
-//     getElements(response);
+
+//Example with promises
+// let promise = new Promise(function(resolve, reject) {
+//   let request = new XMLHttpRequest();
+//   const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.API_KEY}`;
+//   request.onload = function() {
+//     if (this.status === 200) {
+//       resolve(request.response);
+//     } else {
+//       reject(request.response);
+//     }
 //   }
-// }
+//   request.open("GET", url, true);
+//   request.send();
+// });
 
-// request.open("GET", url, true);
-// request.send();
 
 
 
